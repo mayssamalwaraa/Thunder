@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/auth/sing_in.dart';
-import 'package:foodapp/home_screen/home_screen.dart';
+import 'package:foodapp/config/colors.dart';
+import 'package:foodapp/screens/home_screen.dart';
 
 
 void main() {
@@ -12,6 +13,9 @@ class FoodApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: primaryColor ,
+      ),
       debugShowCheckedModeBanner: false,
       title: 'Food App',
       home: HomeScreen(),

@@ -1,14 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodapp/config/colors.dart';
+import 'package:foodapp/screens/home/my_profile/my_profile.dart';
 
 class DrawerSide extends StatelessWidget {
   const DrawerSide({ Key? key }) : super(key: key);
     Widget ItemList({
    required  IconData icon,
    required  String title,
+   required VoidCallback onTap,
 
   }){
     return ListTile(
+      onTap: onTap,
       leading: Icon(
         icon,
         size: 32,
@@ -70,14 +74,26 @@ class DrawerSide extends StatelessWidget {
                     ),
                   ]) ,
               ),
-              ItemList(icon: Icons.home_outlined ,title:"Home" ),
-              ItemList(icon: Icons.shop_outlined ,title:"Review cart" ),
-              ItemList(icon: Icons.person_outlined ,title:"My profile" ),
-              ItemList(icon: Icons.notifications ,title:"Notification" ),
-              ItemList(icon: Icons.star_outlined ,title:"Rating & Review" ),
-              ItemList(icon: Icons.favorite_outlined ,title:"Wishlist" ),
-              ItemList(icon: Icons.copy_outlined ,title:"Rais a complaint" ),
-              ItemList(icon: Icons.format_quote_outlined ,title:"FAQs" ),
+              ItemList(
+                icon: Icons.home_outlined ,
+                title:"Home",
+                onTap: (){} ),
+              ItemList(
+                icon: Icons.shop_outlined ,
+                title:"Review cart",
+                onTap: (){}  ),
+              ItemList(
+                icon: Icons.person_outlined ,
+                title:"My profile",
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context)=> MyProfile()));
+                }  ),
+              ItemList(icon: Icons.notifications ,title:"Notification",onTap: (){}  ),
+              ItemList(icon: Icons.star_outlined ,title:"Rating & Review",onTap: (){}  ),
+              ItemList(icon: Icons.favorite_outlined ,title:"Wishlist",onTap: (){}  ),
+              ItemList(icon: Icons.copy_outlined ,title:"Rais a complaint",onTap: (){}  ),
+              ItemList(icon: Icons.format_quote_outlined ,title:"FAQs",onTap: (){}  ),
               Container(
                 height: 350.0,
                 child: Column(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foodapp/screens/Single_product.dart';
-import 'package:foodapp/screens/drawer_side.dart';
+import 'package:flutter/widgets.dart';
+import 'package:foodapp/screens/home/Single_product.dart';
+import 'package:foodapp/screens/home/drawer_side.dart';
+import 'package:foodapp/screens/home/product_overview/product_overview.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({ Key? key }) : super(key: key);
@@ -75,7 +77,12 @@ class HomeScreen extends StatelessWidget {
                 SingleProduct(
                   productName:'potato' ,
                   productImage:'images/potato.png' ,
-                  ontap: (){}
+                  ontap: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context)=>ProductOverView(
+                        productName:"potato",
+                        productImage:"images/potato.png")));
+                  }
                 ),
                 SingleProduct(
                   productName: 'potato' ,

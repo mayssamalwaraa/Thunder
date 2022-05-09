@@ -4,7 +4,7 @@ class SingleProduct extends StatelessWidget {
 
   final String  productName;
   final String productImage;
-  final Function ontap;
+  final VoidCallback ontap;
 
   SingleProduct({
     required this.productName,
@@ -26,7 +26,9 @@ class SingleProduct extends StatelessWidget {
                       // crossAxisAlignment:CrossAxisAlignment.start,
                   children: [
                     Expanded(
-                      child:Image.asset(productImage), 
+                      child:GestureDetector(
+                        onTap:ontap,
+                        child: Image.asset(productImage)), 
                       ),
                       Expanded(
                         child: Column(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/auth/sing_in.dart';
 import 'package:foodapp/config/colors.dart';
-import 'package:foodapp/screens/home_screen.dart';
+import 'package:foodapp/screens/home/home_screen.dart';
 
 
 void main() {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodapp/screens/home/search/search_item.dart';
+import 'package:foodapp/widget/Single_item.dart';
 
 class Search extends StatelessWidget {
   const Search({ Key? key }) : super(key: key);
@@ -41,11 +41,25 @@ class Search extends StatelessWidget {
           SizedBox(
             height: 13,
           ),
-          SearchItem(),
-          SearchItem(),
-          SearchItem(),
-          SearchItem(),
-          SearchItem(),
+          SingleItem(
+            isItemSearch: true,
+          ),
+          SingleItem(
+            isItemSearch: true,
+          ),
+          SingleItem(
+            isItemSearch: true,
+          ),
+          SingleItem(
+            isItemSearch: true,
+          ),
+          SingleItem(
+            isItemSearch: true,
+          ),
+          SingleItem(
+            isItemSearch: true,
+          ),
+         
           
         ],
       ),

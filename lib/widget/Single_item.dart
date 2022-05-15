@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/config/colors.dart';
 
-class SearchItem extends StatelessWidget {
-  const SearchItem({ Key? key }) : super(key: key);
+class SingleItem extends StatelessWidget {
+  //bool? for nullsafety
+  bool? isItemSearch = true;
+  SingleItem({  this.isItemSearch});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class SearchItem extends StatelessWidget {
           child: Container(
           height: 100,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: isItemSearch==true?  MainAxisAlignment.spaceAround : MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
@@ -52,8 +54,8 @@ class SearchItem extends StatelessWidget {
         Expanded(
           child: Container(
             height: 100,
-            padding: EdgeInsets.symmetric(horizontal: 15,vertical: 32),
-            child: Container(
+            padding: isItemSearch==true ? EdgeInsets.symmetric(horizontal: 15,vertical: 32) : EdgeInsets.only(left: 15,right: 15),
+            child: isItemSearch==true ?  Container(
               height: 25,
               width: 75,
               decoration: BoxDecoration(
@@ -78,9 +80,50 @@ class SearchItem extends StatelessWidget {
                       ),)
                   ]),
               ),
-            ),
-          ))
+            ) : Column(
+              children: [
+                Icon(
+                  Icons.delete,
+                  size: 30,
+                  color: Colors.grey,),
+                  SizedBox(
+                    height: 5,
+                  ),
+                   Container(
+                      height: 25,
+                      width: 75,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(30),
+                        
+                      ),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                            
+                            Text(
+                              "Add",
+                              style: TextStyle(
+                                color:Colors.white,
+                                fontSize: 14,
+                              ),)
+                          ]),
+                      ),
+                    ),
+                          
+                          
+                      ],
+                    ),
+                  ),
+                  ),
       ]
     );
+    isItemSearch == true ? Container() : Divider(height:1,color: Colors.black,);
   }
 }

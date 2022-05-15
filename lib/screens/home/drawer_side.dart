@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodapp/config/colors.dart';
 import 'package:foodapp/screens/home/my_profile/my_profile.dart';
+import 'package:foodapp/screens/home/review_cart/review_cart.dart';
 
 class DrawerSide extends StatelessWidget {
   const DrawerSide({ Key? key }) : super(key: key);
@@ -81,7 +82,10 @@ class DrawerSide extends StatelessWidget {
               ItemList(
                 icon: Icons.shop_outlined ,
                 title:"Review cart",
-                onTap: (){}  ),
+                onTap: (){
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context)=>ReviewCart()));
+                }  ),
               ItemList(
                 icon: Icons.person_outlined ,
                 title:"My profile",

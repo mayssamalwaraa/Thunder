@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:foodapp/screens/home/Single_product.dart';
 import 'package:foodapp/screens/home/drawer_side.dart';
 import 'package:foodapp/screens/home/product_overview/product_overview.dart';
+import 'package:foodapp/screens/home/search/search.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({ Key? key }) : super(key: key);
@@ -20,7 +21,16 @@ class HomeScreen extends StatelessWidget {
           CircleAvatar(
             radius: 15.0,
             backgroundColor: Colors.white60,
-            child: Icon(Icons.search,size: 22.0,color: Colors.white,),
+            child: IconButton(
+              onPressed:(){
+                Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context)=>Search()));
+              },
+              icon:Icon(
+                Icons.search,
+                size: 22.0,
+                color: Colors.white,),
+              ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5.0),

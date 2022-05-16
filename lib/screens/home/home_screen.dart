@@ -1,16 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:foodapp/providers/product_provider.dart';
 import 'package:foodapp/screens/home/Single_product.dart';
 import 'package:foodapp/screens/home/drawer_side.dart';
 import 'package:foodapp/screens/home/product_overview/product_overview.dart';
 import 'package:foodapp/screens/home/search/search.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({ Key? key }) : super(key: key);
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  
 
   @override
+  void initState(){
+    super.initState();
+    ProductProvider productProvider = Provider.of(context , listen: false);
+    productProvider.fetchfoodproductdata();
+
+
+  }
+  @override
   Widget build(BuildContext context) {
+    ProductProvider productProvider = Provider.of(context);
     return Scaffold(
       drawer: DrawerSide(),
       appBar: AppBar(
@@ -83,38 +100,42 @@ class HomeScreen extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: [
-                SingleProduct(
-                  productName:'potato' ,
-                  productImage:'images/potato.png' ,
+              children: productProvider.getfoodproductdata.map(
+                (e) => SingleProduct(
+                  productName:e.productName as String ,
+                  productImage:e.productImage as String ,
+                  productPrice: e.productPrice as int,
                   ontap: (){
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (context)=>ProductOverView(
-                        productName:"potato",
-                        productImage:"images/potato.png")));
+                        productName:e.productName as String,
+                        productImage:e.productImage as String,
+                        productPrice: e.productPrice as int,)));
                   }
-                ),
-                SingleProduct(
-                  productName: 'potato' ,
-                  productImage: 'images/potato.png' ,
-                  ontap: (){}
-                ),
-                SingleProduct(
-                  productName: 'potato' ,
-                  productImage:'images/potato.png' ,
-                  ontap: (){}
-                ),
-                SingleProduct(
-                  productName:'potato' ,
-                  productImage:'images/potato.png' ,
-                  ontap: (){}
-                ),
-                SingleProduct(
-                  productName:'potato' ,
-                  productImage:'images/potato.png' ,
-                  ontap: (){}
-                ),
-              ],
+                ),).toList() as List<Widget>
+              // children: [
+                
+                // SingleProduct(
+                //   productName: 'burger' ,
+                //   productImage: 'images/burger.jpg' ,
+                //   ontap: (){}
+                // ),
+                // SingleProduct(
+                //   productName: 'pizza' ,
+                //   productImage:'images/pizza.jpg' ,
+                //   ontap: (){}
+                // ),
+                // SingleProduct(
+                //   productName:'potato' ,
+                //   productImage:'images/potato.png' ,
+                //   ontap: (){}
+                // ),
+                // SingleProduct(
+                //   productName:'potato' ,
+                //   productImage:'images/potato.png' ,
+                //   ontap: (){}
+                // ),
+              // ],
             ),
           ),
           Padding(
@@ -143,31 +164,31 @@ class HomeScreen extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                SingleProduct(
-                  productName:'potato' ,
-                  productImage:'images/potato.png' ,
-                  ontap: (){}
-                ),
-                SingleProduct(
-                  productName:'potato' ,
-                  productImage:'images/potato.png' ,
-                  ontap: (){}
-                ),
-                SingleProduct(
-                  productName:'potato' ,
-                  productImage:'images/potato.png' ,
-                  ontap: (){}
-                ),
-                SingleProduct(
-                  productName:'potato' ,
-                  productImage:'images/potato.png' ,
-                  ontap: (){}
-                ),
-                SingleProduct(
-                  productName:'potato' ,
-                  productImage:'images/potato.png' ,
-                  ontap: (){}
-                ),
+                // SingleProduct(
+                //   productName:'potato' ,
+                //   productImage:'images/potato.png' ,
+                //   ontap: (){}
+                // ),
+                // SingleProduct(
+                //   productName:'potato' ,
+                //   productImage:'images/potato.png' ,
+                //   ontap: (){}
+                // ),
+                // SingleProduct(
+                //   productName:'potato' ,
+                //   productImage:'images/potato.png' ,
+                //   ontap: (){}
+                // ),
+                // SingleProduct(
+                //   productName:'potato' ,
+                //   productImage:'images/potato.png' ,
+                //   ontap: (){}
+                // ),
+                // SingleProduct(
+                //   productName:'potato' ,
+                //   productImage:'images/potato.png' ,
+                //   ontap: (){}
+                // ),
               ],
             ),
           ),

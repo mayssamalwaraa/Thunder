@@ -6,10 +6,13 @@ import 'package:foodapp/config/colors.dart';
 class ProductOverView extends StatefulWidget {
   final String productName;
   final String productImage;
+  final int productPrice;
 
   ProductOverView({
     required this.productName,
     required this.productImage,
+    required this.productPrice,
+
   });
 
 
@@ -132,7 +135,7 @@ class _ProductOverViewState extends State<ProductOverView> {
                                });
                              },),
                         ],),
-                        Text('\$50'),
+                        Text("\$${widget.productPrice}"),
                         Container(
                           padding: EdgeInsets.symmetric(
                             horizontal: 30,

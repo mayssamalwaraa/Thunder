@@ -4,11 +4,13 @@ class SingleProduct extends StatelessWidget {
 
   final String  productName;
   final String productImage;
+  final int productPrice;
   final VoidCallback ontap;
 
   SingleProduct({
     required this.productName,
     required this.productImage,
+    required this.productPrice,
     required this.ontap,
   });
 
@@ -43,7 +45,7 @@ class SingleProduct extends StatelessWidget {
                               SizedBox(
                                 height: 10.0,
                               ),
-                            Text('\$5'),
+                            Text("\$$productPrice"),
                             SizedBox(
                                 height: 10.0,
                               ),

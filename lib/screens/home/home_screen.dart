@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     ProductProvider productProvider = Provider.of(context , listen: false);
     productProvider.fetchfoodproductdata();
+    productProvider.fetchdrinkproductdata();
 
 
   }
@@ -147,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Latest food',
+                  'Drinks',
                   style: TextStyle(
                     fontSize: 17.0,
                     fontWeight: FontWeight.bold,
@@ -163,7 +164,21 @@ class _HomeScreenState extends State<HomeScreen> {
          SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: [
+              children: productProvider.getdrinkproductdata.map(
+                (e) => SingleProduct(
+                  productName:e.productName as String ,
+                  productImage:e.productImage as String ,
+                  productPrice: e.productPrice as int,
+                  ontap: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context)=>ProductOverView(
+                        productName:e.productName as String,
+                        productImage:e.productImage as String,
+                        productPrice: e.productPrice as int,)));
+                  }
+                ),).toList() as List<Widget>
+
+              // children: [
                 // SingleProduct(
                 //   productName:'potato' ,
                 //   productImage:'images/potato.png' ,
@@ -189,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //   productImage:'images/potato.png' ,
                 //   ontap: (){}
                 // ),
-              ],
+              // ],
             ),
           ),
           

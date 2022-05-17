@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:foodapp/model/product_model.dart';
 import 'package:foodapp/providers/product_provider.dart';
 import 'package:foodapp/screens/home/Single_product.dart';
 import 'package:foodapp/screens/home/drawer_side.dart';
@@ -42,7 +43,13 @@ class _HomeScreenState extends State<HomeScreen> {
             child: IconButton(
               onPressed:(){
                 Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context)=>Search()));
+                      MaterialPageRoute(builder: (context)=>Search(
+                        search:
+                           productProvider.getfoodproductdata,
+                           
+                        
+                        
+                      )));
               },
               icon:Icon(
                 Icons.search,
@@ -90,11 +97,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 17.0,
                     fontWeight: FontWeight.bold,
                   ),),
-                Text(
-                  'view all',
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),),
+                GestureDetector(
+                  child: Text(
+                    'view all',
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),),
+                  onTap:(){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context)=>Search(
+                        search: productProvider.getfoodproductdata,
+                      )));
+                  },
+                ),
               ],
             ),
           ),
@@ -114,29 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         productPrice: e.productPrice as int,)));
                   }
                 ),).toList() as List<Widget>
-              // children: [
-                
-                // SingleProduct(
-                //   productName: 'burger' ,
-                //   productImage: 'images/burger.jpg' ,
-                //   ontap: (){}
-                // ),
-                // SingleProduct(
-                //   productName: 'pizza' ,
-                //   productImage:'images/pizza.jpg' ,
-                //   ontap: (){}
-                // ),
-                // SingleProduct(
-                //   productName:'potato' ,
-                //   productImage:'images/potato.png' ,
-                //   ontap: (){}
-                // ),
-                // SingleProduct(
-                //   productName:'potato' ,
-                //   productImage:'images/potato.png' ,
-                //   ontap: (){}
-                // ),
-              // ],
+             
             ),
           ),
           Padding(
@@ -153,11 +146,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 17.0,
                     fontWeight: FontWeight.bold,
                   ),),
-                Text(
-                  'view all',
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),),
+                GestureDetector(
+                  child: Text(
+                    'view all',
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),),
+                  onTap:(){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context)=>Search(
+                        search: productProvider.getdrinkproductdata,
+                      )));
+                  },
+                ),
               ],
             ),
           ),
@@ -178,33 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                 ),).toList() as List<Widget>
 
-              // children: [
-                // SingleProduct(
-                //   productName:'potato' ,
-                //   productImage:'images/potato.png' ,
-                //   ontap: (){}
-                // ),
-                // SingleProduct(
-                //   productName:'potato' ,
-                //   productImage:'images/potato.png' ,
-                //   ontap: (){}
-                // ),
-                // SingleProduct(
-                //   productName:'potato' ,
-                //   productImage:'images/potato.png' ,
-                //   ontap: (){}
-                // ),
-                // SingleProduct(
-                //   productName:'potato' ,
-                //   productImage:'images/potato.png' ,
-                //   ontap: (){}
-                // ),
-                // SingleProduct(
-                //   productName:'potato' ,
-                //   productImage:'images/potato.png' ,
-                //   ontap: (){}
-                // ),
-              // ],
+              
             ),
           ),
           

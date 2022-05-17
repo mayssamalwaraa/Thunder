@@ -4,7 +4,14 @@ import 'package:foodapp/config/colors.dart';
 class SingleItem extends StatelessWidget {
   //bool? for nullsafety
   bool? isItemSearch = true;
-  SingleItem({  this.isItemSearch});
+  String? productImage;
+  String? productName;
+  int? productPrice;
+  SingleItem({  
+    this.isItemSearch,
+    this.productImage,
+    this.productName,
+    this.productPrice});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +21,7 @@ class SingleItem extends StatelessWidget {
           child: Container(
           height: 100,
           child: Center(
-            child: Image.asset("images/potato.png"),
+            child: Image.asset(productImage as String),
           ),
         ),
         ),
@@ -29,13 +36,13 @@ class SingleItem extends StatelessWidget {
                 crossAxisAlignment:CrossAxisAlignment.start,
                 children:[
                   Text(
-                    "productName",
+                    productName as String,
                     style: TextStyle(
                       color:Colors.black,
                       fontWeight:FontWeight.bold,
                     ),),
                     Text(
-                    "\$50",
+                    "\$$productPrice",
                     style: TextStyle(
                       color:Colors.grey,
                       

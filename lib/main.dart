@@ -22,6 +22,7 @@ class FoodApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        //you should update this 
       ChangeNotifierProvider<ProductProvider>(
       create: (context) => ProductProvider(),),
       ChangeNotifierProvider<UserProvider>(

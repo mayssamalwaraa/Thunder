@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/widget/count.dart';
 
 class SingleProduct extends StatelessWidget {
 
@@ -49,30 +50,31 @@ class SingleProduct extends StatelessWidget {
                             SizedBox(
                                 height: 10.0,
                               ),
-                            Container(
-                            height: 30,
-                            width: 70,
-                            decoration: BoxDecoration(
-                              border: Border.all(color:Colors.white),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(
-                                  Icons.remove,
-                                  size: 15.0,
-                                  color: Colors.white,),
-                                  Text(
-                                    '1',
-                                    style: TextStyle(
-                                      color: Colors.white ),),
-                                  Icon(
-                                  Icons.add,
-                                  size: 15.0,
-                                  color: Colors.white,),
-                              ]),
-                          ),
+                              Count(),
+                          //   Container(
+                          //   height: 30,
+                          //   width: 70,
+                          //   decoration: BoxDecoration(
+                          //     border: Border.all(color:Colors.white),
+                          //     borderRadius: BorderRadius.circular(8.0),
+                          //   ),
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //     children: [
+                          //       Icon(
+                          //         Icons.remove,
+                          //         size: 15.0,
+                          //         color: Colors.white,),
+                          //         Text(
+                          //           '1',
+                          //           style: TextStyle(
+                          //             color: Colors.white ),),
+                          //         Icon(
+                          //         Icons.add,
+                          //         size: 15.0,
+                          //         color: Colors.white,),
+                          //     ]),
+                          // ),
                           ],
                         ),
                         ),

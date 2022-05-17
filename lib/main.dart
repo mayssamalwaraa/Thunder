@@ -4,6 +4,7 @@ import 'package:foodapp/auth/sing_in.dart';
 import 'package:foodapp/config/colors.dart';
 import 'package:foodapp/model/product_model.dart';
 import 'package:foodapp/providers/product_provider.dart';
+import 'package:foodapp/providers/user_provider.dart';
 import 'package:foodapp/screens/home/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -19,8 +20,13 @@ class FoodApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ProductProvider>(
-      create: (context) => ProductProvider(),
+    return MultiProvider(
+      providers: [
+      ChangeNotifierProvider<ProductProvider>(
+      create: (context) => ProductProvider(),),
+      ChangeNotifierProvider<UserProvider>(
+      create: (context) => UserProvider(),),
+      ],
       child: MaterialApp(
         theme: ThemeData(
           primaryColor: primaryColor ,

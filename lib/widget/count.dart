@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/config/colors.dart';
+import 'package:foodapp/providers/cart_view_provider.dart';
+import 'package:provider/provider.dart';
 
 class Count  extends StatefulWidget {
+String? productName;
+String? productImage;
+int? productPrice;
+String? productId;
+
+Count({
+  this.productImage,
+  this.productName,
+  this.productPrice,
+  this.productId,
   
+});
 
   @override
   State<Count> createState() => _CountState();
@@ -11,8 +24,10 @@ class Count  extends StatefulWidget {
 class _CountState extends State<Count> {
   int count =1 ;
   bool isTrue = true;
+
   @override
   Widget build(BuildContext context) {
+    ReviewCartProvider reviewCartProvider = Provider.of(context);
     return Container(
               height: 30,
               width: 70,
@@ -62,6 +77,13 @@ class _CountState extends State<Count> {
                     onTap: () {
                       setState(() {
                         isTrue = false;
+                        reviewCartProvider.addReviewCartData(
+                          cartId: widget.productId,
+                          cartImage: widget.productImage,
+                          cartName: "widget.productName",
+                          cartPrice: widget.productPrice,
+                          cartQuantity: count,
+                        );
                       });
                     },
                     child: Text(

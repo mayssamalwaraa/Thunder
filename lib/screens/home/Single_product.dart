@@ -7,12 +7,14 @@ class SingleProduct extends StatelessWidget {
   final String productImage;
   final int productPrice;
   final VoidCallback ontap;
+ String? productId;
 
   SingleProduct({
     required this.productName,
     required this.productImage,
     required this.productPrice,
     required this.ontap,
+    this.productId
   });
 
   @override
@@ -50,31 +52,14 @@ class SingleProduct extends StatelessWidget {
                             SizedBox(
                                 height: 10.0,
                               ),
-                              Count(),
-                          //   Container(
-                          //   height: 30,
-                          //   width: 70,
-                          //   decoration: BoxDecoration(
-                          //     border: Border.all(color:Colors.white),
-                          //     borderRadius: BorderRadius.circular(8.0),
-                          //   ),
-                          //   child: Row(
-                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //     children: [
-                          //       Icon(
-                          //         Icons.remove,
-                          //         size: 15.0,
-                          //         color: Colors.white,),
-                          //         Text(
-                          //           '1',
-                          //           style: TextStyle(
-                          //             color: Colors.white ),),
-                          //         Icon(
-                          //         Icons.add,
-                          //         size: 15.0,
-                          //         color: Colors.white,),
-                          //     ]),
-                          // ),
+                              Count(
+                                productId: productId,
+                                productImage: productImage,
+                                productName: productName,
+                                productPrice: productPrice,
+                                
+                              ),
+                          
                           ],
                         ),
                         ),

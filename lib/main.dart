@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/auth/sing_in.dart';
 import 'package:foodapp/config/colors.dart';
 import 'package:foodapp/model/product_model.dart';
+import 'package:foodapp/providers/cart_view_provider.dart';
 import 'package:foodapp/providers/product_provider.dart';
 import 'package:foodapp/providers/user_provider.dart';
 import 'package:foodapp/screens/home/home_screen.dart';
@@ -24,9 +25,15 @@ class FoodApp extends StatelessWidget {
       providers: [
         //you should update this 
       ChangeNotifierProvider<ProductProvider>(
-      create: (context) => ProductProvider(),),
+       create: (context) => ProductProvider(),
+      ),
+      //
       ChangeNotifierProvider<UserProvider>(
-      create: (context) => UserProvider(),),
+        create: (context) => UserProvider(),
+      ),
+      ChangeNotifierProvider<ReviewCartProvider>(
+        create: (context) => ReviewCartProvider(),
+      ),
       ],
       child: MaterialApp(
         theme: ThemeData(

@@ -121,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   productName:e.productName as String ,
                   productImage:e.productImage as String ,
                   productPrice: e.productPrice as int,
+                  productId: e.productId ,
                   ontap: (){
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (context)=>ProductOverView(
@@ -170,6 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   productName:e.productName as String ,
                   productImage:e.productImage as String ,
                   productPrice: e.productPrice as int,
+                  productId: e.productId   ,
                   ontap: (){
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (context)=>ProductOverView(

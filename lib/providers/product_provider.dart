@@ -8,15 +8,7 @@ class ProductProvider with ChangeNotifier{
   List<ProductModle> fastfoodlist = [];
   List<ProductModle> searchlist = [];
 
-  // ProductModles(QueryDocumentSnapshot element){
-  //   productModle = ProductModle(
-  //     productImage: element.get("productImage"),
-  //     productName: element.get("productName"),
-  //     productPrice: element.get("productPrice") 
-  //   );
-  //   searchlist.add(productModle as ProductModle);
-  // }
-  
+
   
 
   fetchfoodproductdata() async{
@@ -27,7 +19,8 @@ class ProductProvider with ChangeNotifier{
        productModle = ProductModle(
          productImage: element.get("productImage"),
          productName: element.get("productName"),
-         productPrice: element.get("productPrice")
+         productPrice: element.get("productPrice"),
+         productId: element.get("productId")
        );
        newlist.add(productModle as ProductModle);
       },
@@ -52,7 +45,8 @@ class ProductProvider with ChangeNotifier{
        productModle = ProductModle(
          productImage: element.get("productImage"),
          productName: element.get("productName"),
-         productPrice: element.get("productPrice")
+         productPrice: element.get("productPrice"),
+         productId: element.get("productId")
        );
        newlist.add(productModle as ProductModle);
       },

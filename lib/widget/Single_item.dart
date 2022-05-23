@@ -7,11 +7,17 @@ class SingleItem extends StatelessWidget {
   String? productImage;
   String? productName;
   int? productPrice;
+  String? productId;
+  int? productQuantity;
+  VoidCallback? onDelete;
   SingleItem({  
     this.isItemSearch,
     this.productImage,
     this.productName,
-    this.productPrice});
+    this.productPrice,
+    this.productId,
+    this.onDelete,
+    this.productQuantity});
 
   @override
   Widget build(BuildContext context) {
@@ -89,10 +95,13 @@ class SingleItem extends StatelessWidget {
               ),
             ) : Column(
               children: [
-                Icon(
-                  Icons.delete,
-                  size: 30,
-                  color: Colors.grey,),
+                InkWell(
+                  onTap:onDelete,
+                  child: Icon(
+                    Icons.delete,
+                    size: 30,
+                    color: Colors.grey,),
+                ),
                   SizedBox(
                     height: 5,
                   ),

@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ProductProvider productProvider = Provider.of(context , listen: false);
     productProvider.fetchfoodproductdata();
     productProvider.fetchdrinkproductdata();
+    
 
 
   }

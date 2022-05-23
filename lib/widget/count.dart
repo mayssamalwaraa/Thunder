@@ -80,7 +80,7 @@ class _CountState extends State<Count> {
                         reviewCartProvider.addReviewCartData(
                           cartId: widget.productId,
                           cartImage: widget.productImage,
-                          cartName: "widget.productName",
+                          cartName: widget.productName,
                           cartPrice: widget.productPrice,
                           cartQuantity: count,
                         );

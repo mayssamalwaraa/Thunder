@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/config/colors.dart';
+import 'package:foodapp/providers/wish_list_provider.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -7,11 +9,13 @@ class ProductOverView extends StatefulWidget {
   final String productName;
   final String productImage;
   final int productPrice;
+ String? productId;
 
   ProductOverView({
     required this.productName,
     required this.productImage,
     required this.productPrice,
+    this.productId
 
   });
 
@@ -28,35 +32,41 @@ class _ProductOverViewState extends State<ProductOverView> {
     Color color,
     String title,
     IconData iconData,
+    VoidCallback onTap
   ){
     return Expanded(
-      child: Container(
-        padding: EdgeInsets.all(20.0),
-        color: backgroundColor ,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              iconData,
-              size: 17,
-              color: iconColor,
-            ),
-            SizedBox(
-              width: 5.0,
-            ),
-            Text(
-              title,
-              style: TextStyle(
-                color: color,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.all(20.0),
+          color: backgroundColor ,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                iconData,
+                size: 17,
+                color: iconColor,
               ),
-            ),
-          ],
+              SizedBox(
+                width: 5.0,
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  color: color,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+  bool isWishListItem = false;
   @override
   Widget build(BuildContext context) {
+    WishListProvider wishListProvider = Provider.of(context);
     return Scaffold(
       bottomNavigationBar: Row(
         children: [
@@ -65,13 +75,28 @@ class _ProductOverViewState extends State<ProductOverView> {
               Color.fromARGB(255, 5, 42, 72),
              Colors.white,
              "Add to Wishlist",
-              Icons.favorite_outline),
+             isWishListItem == false ? Icons.favorite_outline : Icons.favorite,
+              (){
+                setState(() {
+                  isWishListItem = !isWishListItem;
+                });
+                if(isWishListItem == true){
+                  wishListProvider.addWishListData(
+                    wishListId: widget.productId,
+                    wishListImage: widget.productImage,
+                    wishListName: widget.productName,
+                    wishListPrice: widget.productPrice,
+                    wishListQuantity: 2
+                  );
+                }
+              }),
               buttonNavigatorBar(
              Colors.white ,
               Color.fromARGB(255, 10, 97, 169),
              Colors.white,
              "Go to cart",
-              Icons.shop_outlined),
+              Icons.shop_outlined,
+              (){}),
         ]),
       appBar: AppBar(
         iconTheme: IconThemeData(color: textColor),

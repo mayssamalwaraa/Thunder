@@ -6,6 +6,7 @@ import 'package:foodapp/model/product_model.dart';
 import 'package:foodapp/providers/cart_view_provider.dart';
 import 'package:foodapp/providers/product_provider.dart';
 import 'package:foodapp/providers/user_provider.dart';
+import 'package:foodapp/providers/wish_list_provider.dart';
 import 'package:foodapp/screens/home/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,9 @@ class FoodApp extends StatelessWidget {
       ),
       ChangeNotifierProvider<ReviewCartProvider>(
         create: (context) => ReviewCartProvider(),
+      ),
+      ChangeNotifierProvider<WishListProvider>(
+        create: (context) => WishListProvider(),
       ),
       ],
       child: MaterialApp(

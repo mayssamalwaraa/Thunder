@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/config/colors.dart';
+import 'package:foodapp/model/user_model.dart';
 import 'package:foodapp/screens/home/drawer_side.dart';
 
 class MyProfile extends StatelessWidget {
-  const MyProfile({ Key? key }) : super(key: key);
+  UserModel? userData;
+  MyProfile({this.userData});
 
   Widget listTile({
    required IconData icon ,
@@ -79,7 +81,7 @@ class MyProfile extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        "Mayssam Alwaraa",
+                                        userData?.userName as String,
                                         style: TextStyle(
                                           fontSize: 14.0,
                                           fontWeight: FontWeight.bold,
@@ -94,10 +96,7 @@ class MyProfile extends StatelessWidget {
                                       child: CircleAvatar(
                                         backgroundColor: Colors.white,
                                         radius: 12,
-                                        child: Icon(
-                                          Icons.edit,
-                                          color: primaryColor,
-                                        ),
+                                        backgroundImage: AssetImage(userData?.userImage as String),
                                       ),
                                     ),
                                     ],
@@ -105,7 +104,7 @@ class MyProfile extends StatelessWidget {
                                     SizedBox(
                                       height: 10.0,
                                     ),
-                                    Text("mayssamalwaraa@gmail.com"),
+                                    Text(userData?.userEmail as String),
                                     
 
                                 ],

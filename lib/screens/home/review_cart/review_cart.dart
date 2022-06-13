@@ -61,7 +61,7 @@ class ReviewCart extends StatelessWidget {
       bottomNavigationBar:ListTile(
         title: Text("Total Amount"),
         subtitle: Text(
-          "\$152",
+          "\$${reviewCartProvider.getTotalPrice()}",
           style: TextStyle(
             color: primaryColor,
           ),),

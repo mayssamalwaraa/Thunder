@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:foodapp/model/product_model.dart';
 import 'package:foodapp/providers/product_provider.dart';
+import 'package:foodapp/providers/user_provider.dart';
 import 'package:foodapp/screens/home/Single_product.dart';
 import 'package:foodapp/screens/home/drawer_side.dart';
 import 'package:foodapp/screens/home/product_overview/product_overview.dart';
+import 'package:foodapp/screens/home/review_cart/review_cart.dart';
 import 'package:foodapp/screens/home/search/search.dart';
 import 'package:provider/provider.dart';
 
@@ -31,8 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     ProductProvider productProvider = Provider.of(context);
+    UserProvider userProvider = Provider.of(context);
+    userProvider.getUserData();
     return Scaffold(
-      drawer: DrawerSide(),
+      drawer: DrawerSide(userProvider:userProvider ),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
         title: Text('Home'),
@@ -53,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       )));
               },
               icon:Icon(
+                
                 Icons.search,
                 size: 22.0,
                 color: Colors.white,),
@@ -63,7 +68,17 @@ class _HomeScreenState extends State<HomeScreen> {
             child: CircleAvatar(
               radius: 15.0,
               backgroundColor: Colors.white60,
-              child: Icon(Icons.shopping_cart,size: 22.0,color: Colors.white,),
+              child: IconButton(
+                onPressed:(){
+                Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context)=>ReviewCart(
+                        
+                      )));
+              },
+               icon:Icon(
+                 Icons.shopping_cart,
+                 size: 22.0,
+                 color: Colors.white,)),
             ),
           ),
         ],

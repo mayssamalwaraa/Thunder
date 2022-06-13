@@ -67,6 +67,17 @@ class ReviewCartProvider with ChangeNotifier{
     List<ReviewCartModel> get getReviewCartDataList{
       return reviewCartDataList;
     }
+
+    /////get totalprice
+    getTotalPrice(){
+      double total = 0.0;
+      reviewCartDataList.forEach((element) {
+        
+        total = total + (element.cartPrice! * (element.cartQuantity as int));
+        
+      });
+      return total;
+    }
     ////////////review cart delete //////////
    reviewCartDataDelete( cartId) {
       FirebaseFirestore.instance.collection("ReviewCart").doc(FirebaseAuth.instance.currentUser?.uid).collection(

@@ -29,7 +29,7 @@ class FoodApp extends StatelessWidget {
        create: (context) => ProductProvider(),
       ),
       //
-      ChangeNotifierProvider<UserProvider>(
+       ChangeNotifierProvider<UserProvider>(
         create: (context) => UserProvider(),
       ),
       ChangeNotifierProvider<ReviewCartProvider>(

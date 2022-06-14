@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:foodapp/config/colors.dart';
 import 'package:foodapp/model/review_cart_model.dart';
 import 'package:foodapp/providers/cart_view_provider.dart';
+import 'package:foodapp/screens/check_out/delivery_details/delivery_details.dart';
 import 'package:foodapp/widget/Single_item.dart';
 import 'package:provider/provider.dart';
 
@@ -73,7 +75,13 @@ class ReviewCart extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
-              onPressed: (){},
+              onPressed: () async{
+                // if(reviewCartProvider.getReviewCartDataList.isEmpty) {
+                //   return  Fluttertoast.showToast(msg: "No food in cart"),
+                // }
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context)=> DeliveryDetails()));
+              },
             ),
           ),
       ),

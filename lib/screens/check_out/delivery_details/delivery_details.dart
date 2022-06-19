@@ -2,9 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/config/colors.dart';
 import 'package:foodapp/screens/check_out/add_delivery_address/add_delivery_address.dart';
 import 'package:foodapp/screens/check_out/delivery_details/single_delivery_item.dart';
+import 'package:foodapp/screens/check_out/payment/payment.dart';
 
 class DeliveryDetails extends StatelessWidget {
-  const DeliveryDetails({ Key? key }) : super(key: key);
+
+  List<Widget> address =[ 
+    SingleDeliveryItem(
+      address: "latakia",
+      addressType: "city",
+      number: "0934963895",
+      title: "shawarma",
+    ),
+  ];
+  bool isAddAdddress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +25,28 @@ class DeliveryDetails extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColor,
         child: Icon(Icons.add),
-        onPressed: (){},
+        onPressed: (){
+          Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context)=>AddDeliveryAddress(
+                        
+                      )));
+        },
       ),
       bottomNavigationBar: Container(
         height: 48,
         margin: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
         child: MaterialButton(
-          child: Text("add new Address"),
+          child: address.isEmpty? Text("add new Address"):Text("payment"),
           onPressed:(){
+           address.isEmpty?
             Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context)=>AddDeliveryAddress(
-                        
-                      )));
+            MaterialPageRoute(builder: (context)=>AddDeliveryAddress(
+              
+            ))):
+            Navigator.of(context).push(
+            MaterialPageRoute(builder: (context)=>Payment(
+              
+            )));
           },
           color: primaryColor,
           shape: RoundedRectangleBorder(
@@ -49,12 +69,16 @@ class DeliveryDetails extends StatelessWidget {
           ),
           Column(
             children: [
+              address.isEmpty ?
+              Container():
               SingleDeliveryItem(
-                address: "latakia",
-                addressType: "city",
-                number: "0934963895",
-                title: "shawarma",
-              ),
+              address: "latakia",
+              addressType: "city",
+              number: "0934963895",
+              title: "shawarma",
+            ),
+              
+              
             ],
           ),
         ],

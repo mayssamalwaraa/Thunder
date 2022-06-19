@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/config/colors.dart';
+import 'package:foodapp/providers/check_out_provider.dart';
 import 'package:foodapp/widget/custom_text_field.dart';
+import 'package:provider/provider.dart';
 
 class AddDeliveryAddress  extends StatefulWidget {
   
@@ -14,9 +16,10 @@ enum TypeAddress{
 }
  
 class _AddDeliveryAddressState extends State<AddDeliveryAddress> {
+  var my_type = TypeAddress.Work;
   @override
   Widget build(BuildContext context) {
-    var my_type = TypeAddress.Work;
+    CheckoutProvider checkoutProvider = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -28,8 +31,10 @@ class _AddDeliveryAddressState extends State<AddDeliveryAddress> {
       bottomNavigationBar: Container(
         margin: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
         height: 40,
-        child: MaterialButton(
-          onPressed: (){},
+        child: checkoutProvider.isloading ==false? MaterialButton(
+          onPressed: (){
+            checkoutProvider.validate(context);
+          },
           child: Text(
             "Add Address",
             style: TextStyle(
@@ -40,7 +45,9 @@ class _AddDeliveryAddressState extends State<AddDeliveryAddress> {
           shape: RoundedRectangleBorder(
             borderRadius:  BorderRadius.circular(30),
           )
-        ),
+        ):Center(
+          child: CircularProgressIndicator(),
+        )
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -50,18 +57,23 @@ class _AddDeliveryAddressState extends State<AddDeliveryAddress> {
           children: [
             CustomTextField(
               labText: "First Name",
+              controller : checkoutProvider.firstName,
             ),
             CustomTextField(
               labText: "Last Name",
+              controller : checkoutProvider.lastName,
             ),
             CustomTextField(
               labText: "Mobile No ",
+              controller : checkoutProvider.mobileNo,
             ),
             CustomTextField(
               labText: "Street",
+              controller : checkoutProvider.street,
             ),
             CustomTextField(
               labText: "City",
+              controller : checkoutProvider.city,
             ),
             InkWell(
               onTap:(){},
@@ -80,37 +92,8 @@ class _AddDeliveryAddressState extends State<AddDeliveryAddress> {
             Divider(
               color: Colors.black,
             ),
-            ListTile(
-              title: Text("Address Type"),
-            ),
-            RadioListTile(
-              value: TypeAddress.Home,
-              groupValue: my_type,
-              title: Text("Home"),
-              onChanged: (TypeAddress? value){
-                setState(() {
-                  my_type = value as TypeAddress;
-                });
-
-              },
-              secondary: Icon(
-                Icons.home,
-                color:primaryColor,
-              ),),
-              RadioListTile(
-              value: TypeAddress.Work,
-              groupValue: my_type,
-              title: Text("work"),
-              onChanged: (TypeAddress? value){
-                setState(() {
-                  my_type = value as TypeAddress;
-                });
-
-              },
-              secondary: Icon(
-                Icons.work,
-                color:primaryColor,
-              ),),
+          
+            
           ],
         ),
       ),

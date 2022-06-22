@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:foodapp/model/delivery_address_model.dart';
 import 'package:location/location.dart';
 
 class CheckoutProvider with ChangeNotifier{
@@ -53,5 +54,34 @@ class CheckoutProvider with ChangeNotifier{
       notifyListeners();
     }
 
+  }
+ 
+  List<DeliveryAddressModel> deliveryAddressList =[];
+ 
+   getDeliveryAddressData() async{
+      List<DeliveryAddressModel> newList =[];
+
+    DeliveryAddressModel? deliveryAddressModel;
+    QuerySnapshot value = await  FirebaseFirestore.instance.collection("AddAddressDetails").get();
+   value.docs.forEach(
+     (element) {
+       deliveryAddressModel = DeliveryAddressModel(
+        firstName: element.get("firstname"),
+        lastName: element.get("lastname"),
+        city:element.get("city"),
+        alt: element.get("altitude"),
+        long: element.get("longitude"),
+        mobileNo: element.get("mobileNo"),
+        
+       );
+      newList.add(deliveryAddressModel as DeliveryAddressModel);
+      notifyListeners();
+    }
+   );
+    deliveryAddressList = newList ;
+    notifyListeners();
+  }
+  List<DeliveryAddressModel> getDeliveryAddressList(){
+    return deliveryAddressList;
   }
 }

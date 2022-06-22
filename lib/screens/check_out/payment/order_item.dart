@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/model/review_cart_model.dart';
 
 class OrderItem extends StatelessWidget {
-  const OrderItem({ Key? key }) : super(key: key);
+  ReviewCartModel? e;
+  OrderItem({
+    this.e,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -10,18 +14,18 @@ class OrderItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "food name",
+              e?.cartName as String,
               style: TextStyle(
                 color: Colors.blue[600],
               ),),
               Text(
-              "\$30",
+              "\$${e?.cartPrice }",
               ),
               
           ],
           
         ),
-        subtitle: Text("5") ,
+        subtitle: Text("${e?.cartQuantity}") ,
     );
   }
 }

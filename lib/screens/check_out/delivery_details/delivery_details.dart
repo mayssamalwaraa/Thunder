@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/config/colors.dart';
+import 'package:foodapp/model/delivery_address_model.dart';
 import 'package:foodapp/providers/check_out_provider.dart';
 import 'package:foodapp/screens/check_out/add_delivery_address/add_delivery_address.dart';
 import 'package:foodapp/screens/check_out/delivery_details/single_delivery_item.dart';
 import 'package:foodapp/screens/check_out/payment/payment.dart';
 import 'package:provider/provider.dart';
 
-class DeliveryDetails extends StatelessWidget {
+class DeliveryDetails extends StatefulWidget {
 
+  @override
+  State<DeliveryDetails> createState() => _DeliveryDetailsState();
+}
+
+class _DeliveryDetailsState extends State<DeliveryDetails> {
   List<Widget> address =[ 
     SingleDeliveryItem(
       address: "latakia",
@@ -16,7 +22,9 @@ class DeliveryDetails extends StatelessWidget {
       title: "shawarma",
     ),
   ];
+
   bool isAddAdddress = false;
+  DeliveryAddressModel? value;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +57,7 @@ class DeliveryDetails extends StatelessWidget {
             ))):
             Navigator.of(context).push(
             MaterialPageRoute(builder: (context)=>Payment(
-              
+              deliveryAddresslist: value,
             )));
           },
           color: primaryColor,
@@ -80,6 +88,9 @@ class DeliveryDetails extends StatelessWidget {
           Column(
             children:
               checkoutProvider.getDeliveryAddressList().map((e){
+                setState(() {
+                  value =e;
+                });
                 return SingleDeliveryItem(
                     address: "${e.city} ${e.street} ",
                     addressType: "Home",

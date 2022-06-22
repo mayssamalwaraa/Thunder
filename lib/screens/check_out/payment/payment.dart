@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/config/colors.dart';
+import 'package:foodapp/model/delivery_address_model.dart';
+import 'package:foodapp/providers/cart_view_provider.dart';
+import 'package:foodapp/screens/check_out/delivery_details/single_delivery_item.dart';
 import 'package:foodapp/screens/check_out/payment/order_item.dart';
+import 'package:provider/provider.dart';
 class Payment extends StatefulWidget {
-  
+   DeliveryAddressModel? deliveryAddresslist;
+   Payment({
+    this.deliveryAddresslist,
+   });
 
   @override
   State<Payment> createState() => _PaymentState();
@@ -16,6 +23,13 @@ enum PaymentOption{
 class _PaymentState extends State<Payment> {
   @override
   Widget build(BuildContext context) {
+    ReviewCartProvider reviewCartProvider = Provider.of(context);
+    reviewCartProvider.getReviewCartData();
+
+    double subtotal = reviewCartProvider.getTotalPrice();
+    double deliverycoast = 10.0;
+    double totalCoast = subtotal + deliverycoast;
+
     var paymentoptions = PaymentOption.Cash; 
     return Scaffold(
     appBar: AppBar(
@@ -27,7 +41,7 @@ class _PaymentState extends State<Payment> {
     ),
     bottomNavigationBar: ListTile(
       title: Text("total amount"),
-      subtitle: Text("\$300"),
+      subtitle: Text("\$${totalCoast}"),
       trailing:Container(
         width: 160,
         child: MaterialButton(
@@ -54,20 +68,19 @@ class _PaymentState extends State<Payment> {
               itemBuilder:(context , index){
                 return Column(
                     children: [
-                      ListTile(
-                        title: Text("First & Last name"),
-                        subtitle: Text("asdasdasadas"),
-                      ),
+                      SingleDeliveryItem(
+                    address: "${widget.deliveryAddresslist?.city} ${widget.deliveryAddresslist?.street} ",
+                    addressType: "Home",
+                    number: "${widget.deliveryAddresslist?.mobileNo}",
+                    title: "${widget.deliveryAddresslist?.firstName} ${widget.deliveryAddresslist?.lastName}",
+                  ),
                       Divider(),
                       ExpansionTile(
-                        children: [
-                          OrderItem(),
-                          OrderItem(),
-                          OrderItem(),
-                          OrderItem(),
-                          OrderItem(),
-                        ],
-                        title: Text("order item")
+                        children:reviewCartProvider.getReviewCartDataList.map((e) {
+                          return OrderItem(e: e,);
+                        }).toList()
+                        as List<Widget>,
+                        title: Text("order item ${reviewCartProvider.getReviewCartDataList.length}")
                         ),
                         Divider(),
                         ListTile(
@@ -79,7 +92,7 @@ class _PaymentState extends State<Payment> {
                             ),
                             ),
                           trailing:Text(
-                            "\$200",
+                            "\$${subtotal}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
@@ -96,7 +109,7 @@ class _PaymentState extends State<Payment> {
                             ),
                             ),
                           trailing:Text(
-                            "\$10",
+                            "\$${deliverycoast}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
@@ -104,23 +117,10 @@ class _PaymentState extends State<Payment> {
 
 
                         ),
-                         ListTile(
-                          minVerticalPadding: 5,
-                          leading: Text(
-                            "discount",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                            ),
-                          trailing:Text(
-                            "\$0",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                            ) ,
+                         
 
 
-                        ),
+                        
                         Divider(),
                         ListTile(
                           leading: Text("payment option"),

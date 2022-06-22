@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/config/colors.dart';
 import 'package:foodapp/providers/check_out_provider.dart';
+import 'package:foodapp/screens/check_out/google_map/google_map.dart';
 import 'package:foodapp/widget/custom_text_field.dart';
 import 'package:provider/provider.dart';
 
@@ -76,7 +77,9 @@ class _AddDeliveryAddressState extends State<AddDeliveryAddress> {
               controller : checkoutProvider.city,
             ),
             InkWell(
-              onTap:(){},
+              onTap:(){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CustomGooglePlay()));
+              },
               child: Container(
                 height: 47,
                 width: double.infinity,

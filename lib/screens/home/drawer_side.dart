@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:foodapp/auth/sing_in.dart';
 import 'package:foodapp/config/colors.dart';
 import 'package:foodapp/providers/user_provider.dart';
+import 'package:foodapp/screens/home/home_screen.dart';
 import 'package:foodapp/screens/home/my_profile/my_profile.dart';
 import 'package:foodapp/screens/home/review_cart/review_cart.dart';
 
@@ -77,7 +80,10 @@ class _DrawerSideState extends State<DrawerSide> {
               ItemList(
                 icon: Icons.home_outlined ,
                 title:"Home",
-                onTap: (){} ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context)=> HomeScreen()));
+                } ),
               ItemList(
                 icon: Icons.shop_outlined ,
                 title:"Review cart",
@@ -92,11 +98,19 @@ class _DrawerSideState extends State<DrawerSide> {
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context)=> MyProfile(userData:userData)));
                 }  ),
-              ItemList(icon: Icons.notifications ,title:"Notification",onTap: (){}  ),
               ItemList(icon: Icons.star_outlined ,title:"Rating & Review",onTap: (){}  ),
-              ItemList(icon: Icons.favorite_outlined ,title:"Wishlist",onTap: (){}  ),
-              ItemList(icon: Icons.copy_outlined ,title:"Rais a complaint",onTap: (){}  ),
-              ItemList(icon: Icons.format_quote_outlined ,title:"FAQs",onTap: (){}  ),
+              ItemList(
+                icon: Icons.logout_outlined ,
+                title:"log out",
+                onTap: ()
+                {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context)=> SingIn()));
+                    Fluttertoast.showToast(msg: "success log out");
+                    
+
+                 }  ),
+
               Container(
                 height: 350.0,
                 child: Column(

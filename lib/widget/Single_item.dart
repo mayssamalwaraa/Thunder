@@ -93,7 +93,9 @@ class SingleItem extends StatelessWidget {
                       ),)
                   ]),
               ),
-            ) : Column(
+            ) :
+             Column(
+              mainAxisAlignment:MainAxisAlignment.center,
               children: [
                 InkWell(
                   onTap:onDelete,
@@ -105,33 +107,33 @@ class SingleItem extends StatelessWidget {
                   SizedBox(
                     height: 5,
                   ),
-                   Container(
-                      height: 25,
-                      width: 75,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(30),
+                  //  Container(
+                  //     height: 25,
+                  //     width: 75,
+                  //     decoration: BoxDecoration(
+                  //       color: Colors.blue,
+                  //       borderRadius: BorderRadius.circular(30),
                         
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 20,
-                            ),
+                  //     ),
+                  //     child: Center(
+                  //       child: Row(
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         children: [
+                  //           Icon(
+                  //             Icons.add,
+                  //             color: Colors.white,
+                  //             size: 20,
+                  //           ),
                             
-                            Text(
-                              "Add",
-                              style: TextStyle(
-                                color:Colors.white,
-                                fontSize: 14,
-                              ),)
-                          ]),
-                      ),
-                    ),
+                  //           Text(
+                  //             "Add",
+                  //             style: TextStyle(
+                  //               color:Colors.white,
+                  //               fontSize: 14,
+                  //             ),)
+                  //         ]),
+                  //     ),
+                  //   ),
                           
                           
                       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:foodapp/config/colors.dart';
 import 'package:foodapp/providers/check_out_provider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -63,6 +64,7 @@ class _CustomGooglePlayState extends State<CustomGooglePlay> {
                       checkoutProvider.setLocation = value;
                     });
                   } );
+                  Fluttertoast.showToast(msg: "success add location");
                   Navigator.of(context).pop();
                 },
                 color:primaryColor,

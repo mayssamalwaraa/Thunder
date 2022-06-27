@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:foodapp/config/colors.dart';
 import 'package:foodapp/model/delivery_address_model.dart';
 import 'package:foodapp/providers/cart_view_provider.dart';
 import 'package:foodapp/screens/check_out/delivery_details/single_delivery_item.dart';
 import 'package:foodapp/screens/check_out/payment/order_item.dart';
+import 'package:foodapp/screens/home/home_screen.dart';
 import 'package:provider/provider.dart';
 class Payment extends StatefulWidget {
    DeliveryAddressModel? deliveryAddresslist;
@@ -46,10 +48,13 @@ class _PaymentState extends State<Payment> {
         width: 160,
         child: MaterialButton(
           onPressed:(){
+             Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context)=> HomeScreen()));
+                    Fluttertoast.showToast(msg: "wait your order");
 
           },
           child: Text(
-            "Pleace order",
+            "pay",
             style: TextStyle(
               color: textColor,
             ),

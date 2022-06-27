@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:foodapp/config/colors.dart';
@@ -70,17 +72,22 @@ class ReviewCart extends StatelessWidget {
           trailing: Container(
             width: 160,
             child: MaterialButton(
-              child: Text("submit"),
+              child: Text(
+                "submit",
+                style: TextStyle(
+                  color: Colors.white,
+                ),),
               color: primaryColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
               onPressed: () async{
-                // if(reviewCartProvider.getReviewCartDataList.isEmpty) {
-                //   return  Fluttertoast.showToast(msg: "No food in cart"),
-                // }
+                if(reviewCartProvider.getReviewCartDataList.isEmpty) {
+                    Fluttertoast.showToast(msg: "No food in cart");
+                }else {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context)=> DeliveryDetails()));
+                }
               },
             ),
           ),

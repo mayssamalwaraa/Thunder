@@ -48,7 +48,7 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
         height: 48,
         margin: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
         child: MaterialButton(
-          child: checkoutProvider.deliveryAddressList.isEmpty? Text("add new Address"):Text("payment"),
+          child: checkoutProvider.deliveryAddressList.isEmpty? Text("add new Address",style:TextStyle(color: Colors.white)):Text("payment",style:TextStyle(color: Colors.white)),
           onPressed:(){
            checkoutProvider.deliveryAddressList.isEmpty?
             Navigator.of(context).push(
@@ -92,7 +92,7 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
                   value =e;
                 });
                 return SingleDeliveryItem(
-                    address: "${e.city} ${e.street} ",
+                    address: "${e.city} - ${e.street } ",
                     addressType: "Home",
                     number: "${e.mobileNo}",
                     title: "${e.firstName} ${e.lastName}",

@@ -52,7 +52,7 @@ class SingleDeliveryItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("address"),
+              Text(address as String ),
               SizedBox(
                 height: 5,
               ),
